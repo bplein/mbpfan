@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  mbpfan:
+    privileged: true
+    image: bplein/mbpfan:latest
+    container_name: mbpfan
+    hostname: mbpfan
+    restart: unless-stopped
+    volumes:
+      - ./etc:/etc/mbpfan
