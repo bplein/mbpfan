@@ -8,4 +8,4 @@ services:
     hostname: mbpfan
     restart: unless-stopped
     volumes:
-      - ./etc:/etc/mbpfan
+      - ./etc/mbpfan.conf:/etc/mbpfan.conf
