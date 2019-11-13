@@ -1,12 +1,11 @@
 FROM ubuntu:18.04
 LABEL maintainer "Bill Plein <bill+github@p3n.cc>"
 
-RUN apt-get update \
-    && apt install -y mbpfan \
-#    && apt-get -y upgrade \ 
-    && mkdir -p /etc/mbpfan
+COPY mbpfan /usr/sbin/mbpfan
+RUN apt-get update && apt-get upgrade -y
 
-#RUN mv /etc/mbpfan.conf /etc/mbpfan/mbpfan.orig 
+RUN apt-get -qqy autoremove --purge > /dev/null \
+    && apt-get -qqy clean autoclean > /dev/null \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/*
 
 ENTRYPOINT ["mbpfan", "-f", "-v"]
-#CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
